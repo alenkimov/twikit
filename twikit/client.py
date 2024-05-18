@@ -8,7 +8,6 @@ from functools import partial
 from typing import Generator, Literal
 
 import filetype
-from fake_useragent import UserAgent
 from httpx import Response
 
 from .bookmark import BookmarkFolder
@@ -78,7 +77,6 @@ class Client:
         self.language = language
         self.http = HTTPClient(proxies=proxies, **kwargs)
         self._user_id = None
-        self._user_agent = UserAgent().random.strip()
         self._act_as = None
 
     def _get_guest_token(self) -> str:
@@ -104,7 +102,7 @@ class Client:
             'X-Twitter-Auth-Type': 'OAuth2Session',
             'X-Twitter-Active-User': 'yes',
             'Referer': 'https://twitter.com/',
-            'User-Agent': self._user_agent,
+            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         }
 
         if self.language is not None:

@@ -13,7 +13,6 @@ setup(
     version=version,
     install_requires=[
         'httpx',
-        'fake_useragent',
         'filetype'
     ],
     python_requires='>=3.10',
